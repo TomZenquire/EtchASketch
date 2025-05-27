@@ -43,6 +43,7 @@ clickMakeGrid.onclick = function () {
   };
 
 function incrementTransparency(inputDiv) {
-    let currentTransparency = inputDiv.style.cssText;
-    console.log(currentTransparency)
+    let currentCSS = inputDiv.style.cssText;
+    let newTransparency = Number(currentCSS.slice(-5,-2)) + 0.1;
+    if (newTransparency <= 1) {inputDiv.style.cssText = currentCSS.slice(0,-6)+newTransparency+")"}
 }
