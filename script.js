@@ -17,8 +17,16 @@ function generateGrid (numberGridItems) {
             let appendedBox = appendedRow.appendChild(newBox);
             appendedBox.classList.add("etchASketchGrid");
             appendedBox.addEventListener("mouseover", () => {
-                appendedBox.style.cssText = "background-color:rgba("+randomIntegerBetween(0,255)+","+randomIntegerBetween(0,255)+","+randomIntegerBetween(0,255)+",0.1)";
-            });
+                appendedBox.style.cssText = "background-color:rgba("+
+                randomIntegerBetween(0,255)+","+randomIntegerBetween(0,255)+","+randomIntegerBetween(0,255)
+                +",0.1)"
+            },{ once: true });
+            appendedBox.addEventListener("mouseout", (event) => {
+                event.stopImmediatePropagation(),
+                appendedBox.addEventListener("mouseover", () =>{
+                    incrementTransparency(appendedBox)
+                })
+            },{ once: true });
         };
     }
 }
