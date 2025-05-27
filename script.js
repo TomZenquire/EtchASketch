@@ -3,6 +3,10 @@ const parentDiv = document.getElementById("etchASketchParent")
 generateGrid(16)
 
 
+function randomIntegerBetween(min, max) { 
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+
 function generateGrid (numberGridItems) {
     for (let i = 0; i < numberGridItems; i++) {
         let newRow = document.createElement("div");
@@ -12,7 +16,10 @@ function generateGrid (numberGridItems) {
             let newBox = document.createElement("div");
             let appendedBox = appendedRow.appendChild(newBox);
             appendedBox.classList.add("etchASketchGrid");
-        }
+            appendedBox.addEventListener("mouseover", () => {
+                appendedBox.style.cssText = "background-color:rgba("+randomIntegerBetween(0,255)+","+randomIntegerBetween(0,255)+","+randomIntegerBetween(0,255)+",0.1)";
+            });
+        };
     }
 }
 
@@ -27,3 +34,7 @@ clickMakeGrid.onclick = function () {
     input.value = "";
   };
 
+function incrementTransparency(inputDiv) {
+    let currentTransparency = inputDiv.style.cssText;
+    console.log(currentTransparency)
+}
